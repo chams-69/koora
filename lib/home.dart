@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:koora/fields.dart';
 import 'package:koora/games.dart';
 import 'package:koora/messages.dart';
+import 'package:koora/my_activities.dart';
 import 'package:koora/notifications.dart';
+import 'package:koora/player_profile.dart';
+import 'package:koora/players.dart';
 import 'package:koora/profile.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:koora/qiuckies.dart';
+import 'package:koora/teams.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,7 +20,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController(initialPage: 0);
+  bool follow = true;
+  bool follow2 = true;
+  bool showText = false;
 
   List<Widget> carouselItems = [
     InkWell(
@@ -64,6 +73,10 @@ class _HomeState extends State<Home> {
       a = width / 430;
       return screenWidth * a;
     }
+
+    String name = 'NAME';
+    String post = 'CM';
+    int rate = 99;
 
     double radius = screenWidth < 500 ? width(15) : 17.44186046511628;
     double sizedBoxWidth = screenWidth < 500 ? width(60) : 69.76744186046512;
@@ -192,8 +205,8 @@ class _HomeState extends State<Home> {
           ),
         ),
         centerTitle: true,
-        leading: InkWell(
-          onTap: () {
+        leading: IconButton(
+          onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -201,29 +214,28 @@ class _HomeState extends State<Home> {
               ),
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Ink(
-              child: Image.asset(
-                'assets/images/profileIcon.png',
-              ),
-            ),
+          icon: Stack(
+            children: [
+              Image.asset('assets/images/profileIcon.png'),
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: Image.asset(
+                  'assets/images/avatar.png',
+                  fit: BoxFit.cover,
+                ),
+              )
+            ],
           ),
         ),
         actions: [
           Row(
             children: [
-              InkWell(
-                onTap: () {},
-                child: Ink(
-                  child: Image.asset(
-                    'assets/images/search.png',
-                  ),
-                ),
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset('assets/images/search.png'),
               ),
-              SizedBox(width: width(20)),
-              InkWell(
-                onTap: () {
+              IconButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -231,15 +243,10 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: Ink(
-                  child: Image.asset(
-                    'assets/images/notifications.png',
-                  ),
-                ),
+                icon: Image.asset('assets/images/notifications.png'),
               ),
-              SizedBox(width: width(20)),
-              InkWell(
-                onTap: () {
+              IconButton(
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -247,11 +254,8 @@ class _HomeState extends State<Home> {
                     ),
                   );
                 },
-                child: Ink(
-                  child: Image.asset('assets/images/chat.png'),
-                ),
+                icon: Image.asset('assets/images/chat.png'),
               ),
-              const SizedBox(width: 10),
             ],
           ),
         ],
@@ -284,7 +288,14 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Teams(),
+                          ),
+                        );
+                      },
                       child: Ink(
                         child: Image.asset(
                           'assets/images/teams.png',
@@ -294,13 +305,46 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
-                      child: Ink(
-                        child: Image.asset(
-                          'assets/images/tournements.png',
-                          width: width(100),
-                          height: width(100),
-                        ),
+                      onTap: () {
+                        setState(() {
+                          showText = true; // Show the text when tapped
+                        });
+                        Future.delayed(const Duration(seconds: 3), () {
+                          setState(() {
+                            showText = false; // Hide the text after 5 seconds
+                          });
+                        });
+                      },
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Opacity(
+                            opacity: showText
+                                ? 0.3
+                                : 0.4, // Set the opacity of the image
+                            child: Image.asset(
+                              'assets/images/tournement.png',
+                              width: width(100),
+                              height: width(100),
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            opacity: showText
+                                ? 0.7
+                                : 0.0, // Set opacity based on showText
+                            duration: const Duration(
+                                milliseconds: 300), // Animation duration
+                            child: Text(
+                              'Coming Soon...',
+                              style: TextStyle(
+                                color: const Color(0xFFF1EED0),
+                                fontSize:
+                                    width(10), // Adjust font size as needed
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -323,7 +367,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Games(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'See all',
                     style: TextStyle(
@@ -342,7 +393,7 @@ class _HomeState extends State<Home> {
                   const SizedBox(width: 10),
                   Row(
                     children: List.generate(
-                      5, // Replace 'numberOfRepetitions' with the desired number of repetitions
+                      5,
                       (index) {
                         return Row(
                           children: [
@@ -383,7 +434,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Players(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'See all',
                     style: TextStyle(
@@ -409,12 +467,98 @@ class _HomeState extends State<Home> {
                             Column(
                               children: [
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PlayerProfile(),
+                                      ),
+                                    );
+                                  },
                                   child: Ink(
-                                    child: Image.asset(
-                                      'assets/images/profile.png',
-                                      width: width(140),
-                                      height: width(200),
+                                    child: Stack(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/profile.png',
+                                          width: width(140),
+                                          height: width(200),
+                                        ),
+                                        Positioned(
+                                          top: width(22),
+                                          right: width(14),
+                                          child: SizedBox(
+                                            child: Image.asset(
+                                              width: width(70),
+                                              height: width(86),
+                                              'assets/images/avatar.png',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: width(26.5)),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(height: width(34)),
+                                              Row(
+                                                children: [
+                                                  SizedBox(width: width(1)),
+                                                  Text(
+                                                    '$rate',
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xFFF1EED0),
+                                                      fontSize: width(16),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  SizedBox(width: width(2)),
+                                                  Text(
+                                                    post,
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xFFF1EED0),
+                                                      fontSize: width(9),
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: width(9.5)),
+                                              Image.asset(
+                                                'assets/images/tunisia.png',
+                                                width: width(16),
+                                                height: width(12),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: width(109),
+                                          child: SizedBox(
+                                            width: width(140),
+                                            child: Center(
+                                              child: Text(
+                                                name,
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(0xFFF1EED0),
+                                                  fontSize: width(10),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -426,17 +570,25 @@ class _HomeState extends State<Home> {
                                         horizontal: width(7)),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor:
-                                            const Color(0xFFF1EED0),
-                                        backgroundColor:
-                                            const Color(0xFF599068),
+                                        foregroundColor: follow == true
+                                            ? const Color(0xFFF1EED0)
+                                            : const Color(0xFF292929),
+                                        backgroundColor: follow == true
+                                            ? const Color(0xFF599068)
+                                            : const Color(0xFF807E73),
                                         padding: EdgeInsets.symmetric(
                                             horizontal: width(15),
                                             vertical: width(13)),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(
+                                          () {
+                                            follow = !follow;
+                                          },
+                                        );
+                                      },
                                       child: Text(
-                                        'Follow',
+                                        follow == true ? 'Follow' : 'Following',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: width(18),
@@ -472,7 +624,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Fields(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'See all',
                     style: TextStyle(
@@ -530,7 +689,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Players(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'See more',
                     style: TextStyle(
@@ -556,12 +722,98 @@ class _HomeState extends State<Home> {
                             Column(
                               children: [
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PlayerProfile(),
+                                      ),
+                                    );
+                                  },
                                   child: Ink(
-                                    child: Image.asset(
-                                      'assets/images/profile.png',
-                                      width: width(140),
-                                      height: width(200),
+                                    child: Stack(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/profile.png',
+                                          width: width(140),
+                                          height: width(200),
+                                        ),
+                                        Positioned(
+                                          top: width(22),
+                                          right: width(14),
+                                          child: SizedBox(
+                                            child: Image.asset(
+                                              width: width(70),
+                                              height: width(86),
+                                              'assets/images/avatar.png',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: width(26.5)),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(height: width(34)),
+                                              Row(
+                                                children: [
+                                                  SizedBox(width: width(1)),
+                                                  Text(
+                                                    '$rate',
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xFFF1EED0),
+                                                      fontSize: width(16),
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  SizedBox(width: width(2)),
+                                                  Text(
+                                                    post,
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xFFF1EED0),
+                                                      fontSize: width(9),
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: width(9.5)),
+                                              Image.asset(
+                                                'assets/images/tunisia.png',
+                                                width: width(16),
+                                                height: width(12),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: width(109),
+                                          child: SizedBox(
+                                            width: width(140),
+                                            child: Center(
+                                              child: Text(
+                                                name,
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(0xFFF1EED0),
+                                                  fontSize: width(10),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -573,17 +825,27 @@ class _HomeState extends State<Home> {
                                         horizontal: width(7)),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor:
-                                            const Color(0xFFF1EED0),
-                                        backgroundColor:
-                                            const Color(0xFF599068),
+                                        foregroundColor: follow2 == true
+                                            ? const Color(0xFFF1EED0)
+                                            : const Color(0xFF292929),
+                                        backgroundColor: follow2 == true
+                                            ? const Color(0xFF599068)
+                                            : const Color(0xFF807E73),
                                         padding: EdgeInsets.symmetric(
                                             horizontal: width(15),
                                             vertical: width(13)),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(
+                                          () {
+                                            follow2 = !follow2;
+                                          },
+                                        );
+                                      },
                                       child: Text(
-                                        'Follow',
+                                        follow2 == true
+                                            ? 'Follow'
+                                            : 'Following',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: width(18),
@@ -619,7 +881,14 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Quickies(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'Watch all',
                     style: TextStyle(
@@ -699,10 +968,7 @@ class _HomeState extends State<Home> {
                 enlargeCenterPage:
                     false, // Increase the size of the center item
                 enableInfiniteScroll: true, // Enable infinite scroll
-                onPageChanged: (index, reason) {
-                  // Optional callback when the page changes
-                  // You can use it to update any additional UI components
-                },
+                onPageChanged: (index, reason) {},
               ),
             ),
             // SizedBox(
@@ -736,35 +1002,53 @@ class _HomeState extends State<Home> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Image.asset('assets/images/quickies.png'),
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Quickies(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/quickies.png'),
             ),
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Image.asset('assets/images/myActivities.png'),
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyActivities(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/myActivities.png'),
             ),
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Image.asset('assets/images/inHome.png'),
-              ),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset('assets/images/inHome.png'),
             ),
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Image.asset('assets/images/players.png'),
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Players(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/players.png'),
             ),
-            InkWell(
-              onTap: () {},
-              child: Ink(
-                child: Image.asset('assets/images/fields.png'),
-              ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Fields(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/fields.png'),
             ),
           ],
         ),

@@ -9,6 +9,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int selectedIndex = 0;
+  bool foot = true;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,28 @@ class _ProfileState extends State<Profile> {
       a = width / 430;
       return screenWidth * a;
     }
+
+    String name = 'NAME';
+    String user = 'User_Name';
+    String bio = 'Bio description bla bla bla bla bla bla bla bla bla .';
+    int rate = 99;
+    int rated = 99;
+    int motm = 99;
+    int played = 99;
+    int upcoming = 9;
+    int posts = 99;
+    int followers = 9999;
+    int following = 999;
+
+    int age = 99;
+    int height = 199;
+    int weight = 99;
+    String post = 'CM';
+    String post2 = 'CAM, LW';
+
+    int jerseyNumber = 99;
+    List<int> num1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    double leftPosition = num1.contains(jerseyNumber) ? width(25) : width(21);
 
     Widget selectedTab(String selected, String dselected,
         {required bool isSelected}) {
@@ -44,24 +67,15 @@ class _ProfileState extends State<Profile> {
           actions: [
             Row(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Ink(
-                    child: Image.asset(
-                      'assets/images/edit.png',
-                    ),
-                  ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('assets/images/edit.png'),
                 ),
-                SizedBox(width: width(20)),
-                InkWell(
-                  onTap: () {},
-                  child: Ink(
-                    child: Image.asset(
-                      'assets/images/share.png',
-                    ),
-                  ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('assets/images/share.png'),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 5),
               ],
             )
           ],
@@ -69,10 +83,13 @@ class _ProfileState extends State<Profile> {
         body: SingleChildScrollView(
           child: Stack(
             children: [
-              Image.asset(
-                'assets/images/coverPhoto.png',
+              SizedBox(
                 width: screenWidth,
                 height: width(144),
+                child: Image.asset(
+                  'assets/images/coverPhoto.png',
+                  fit: BoxFit.cover,
+                ),
               ),
               Column(
                 children: [
@@ -95,7 +112,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                               ),
                               Text(
-                                ' 99 ',
+                                ' $rated ',
                                 style: TextStyle(
                                   color: const Color(0xFFF1EED0),
                                   fontSize: width(10),
@@ -122,7 +139,7 @@ class _ProfileState extends State<Profile> {
                           Row(
                             children: [
                               Text(
-                                '99 ',
+                                '$motm ',
                                 style: TextStyle(
                                   color: const Color(0xFFF1EED0),
                                   fontSize: width(10),
@@ -148,10 +165,83 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                       SizedBox(width: width(4)),
-                      Image.asset(
-                        'assets/images/profile.png',
-                        width: width(140),
-                        height: width(200),
+                      Stack(
+                        children: [
+                          Image.asset(
+                            'assets/images/profile.png',
+                            width: width(140),
+                            height: width(200),
+                          ),
+                          Positioned(
+                            top: width(22),
+                            right: width(14),
+                            child: SizedBox(
+                              child: Image.asset(
+                                width: width(70),
+                                height: width(86),
+                                'assets/images/avatar.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width(26.5)),
+                            child: Column(
+                              children: [
+                                SizedBox(height: width(34)),
+                                Row(
+                                  children: [
+                                    SizedBox(width: width(1)),
+                                    Text(
+                                      '$rate',
+                                      style: TextStyle(
+                                        color: const Color(0xFFF1EED0),
+                                        fontSize: width(16),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(width: width(1.5)),
+                                    Text(
+                                      post,
+                                      style: TextStyle(
+                                        color: const Color(0xFFF1EED0),
+                                        fontSize: width(9),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: width(9.5)),
+                                Image.asset(
+                                  'assets/images/tunisia.png',
+                                  width: width(16),
+                                  height: width(12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            top: width(109),
+                            child: SizedBox(
+                              width: width(140),
+                              child: Center(
+                                child: Text(
+                                  name,
+                                  style: TextStyle(
+                                    color: const Color(0xFFF1EED0),
+                                    fontSize: width(10),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(width: width(10)),
                       Column(
@@ -159,7 +249,7 @@ class _ProfileState extends State<Profile> {
                         children: [
                           SizedBox(height: width(65)),
                           Text(
-                            '@ User Name',
+                            '@ $user',
                             style: TextStyle(
                               color: const Color(0xFFF1EED0),
                               fontSize: width(10),
@@ -171,7 +261,7 @@ class _ProfileState extends State<Profile> {
                             children: [
                               SizedBox(width: width(15)),
                               Text(
-                                '99 ',
+                                '$played ',
                                 style: TextStyle(
                                   color: const Color(0xFFF1EED0),
                                   fontSize: width(10),
@@ -193,7 +283,7 @@ class _ProfileState extends State<Profile> {
                             children: [
                               SizedBox(width: width(15)),
                               Text(
-                                '9 ',
+                                '$upcoming ',
                                 style: TextStyle(
                                   color: const Color(0xFFBFBCA0),
                                   fontSize: width(10),
@@ -221,7 +311,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            '99',
+                            '$posts',
                             style: TextStyle(
                               color: const Color(0xFFF1EED0),
                               fontSize: width(12),
@@ -243,7 +333,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            '9999',
+                            '$followers',
                             style: TextStyle(
                               color: const Color(0xFFF1EED0),
                               fontSize: width(12),
@@ -265,7 +355,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            '999',
+                            '$following',
                             style: TextStyle(
                               color: const Color(0xFFF1EED0),
                               fontSize: width(12),
@@ -290,7 +380,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       SizedBox(width: width(20)),
                       Text(
-                        'Bio description bla bla bla bla bla bla bla bla bla .',
+                        bio,
                         style: TextStyle(
                           color: const Color(0xFFF1EED0),
                           fontSize: width(10),
@@ -369,7 +459,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 Text(
-                                  '99' + ' Years',
+                                  '$age Years',
                                   style: TextStyle(
                                     color: const Color(0xFFF1EED0),
                                     fontSize: width(16),
@@ -391,7 +481,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 Text(
-                                  '199' + ' cm',
+                                  '$height cm',
                                   style: TextStyle(
                                     color: const Color(0xFFF1EED0),
                                     fontSize: width(16),
@@ -413,7 +503,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 Text(
-                                  '99' + ' Kg',
+                                  '$weight Kg',
                                   style: TextStyle(
                                     color: const Color(0xFFF1EED0),
                                     fontSize: width(16),
@@ -434,14 +524,23 @@ class _ProfileState extends State<Profile> {
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),
-                                Text(
-                                  'Right',
-                                  style: TextStyle(
-                                    color: const Color(0xFFF1EED0),
-                                    fontSize: width(16),
-                                    fontWeight: FontWeight.bold,
+                                TextButton(
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        foot = !foot;
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    foot == true ? 'Right' : 'Left',
+                                    style: TextStyle(
+                                      color: const Color(0xFFF1EED0),
+                                      fontSize: width(16),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
+                                )
                               ],
                             ),
                             SizedBox(height: width(38)),
@@ -465,9 +564,9 @@ class _ProfileState extends State<Profile> {
                                     ),
                                     Positioned(
                                       top: width(20),
-                                      left: width(21),
+                                      left: leftPosition,
                                       child: Text(
-                                        '99',
+                                        '$jerseyNumber',
                                         style: TextStyle(
                                           color: const Color(0xFFF1EED0),
                                           fontSize: width(14),
@@ -492,7 +591,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 Text(
-                                  'CM',
+                                  post,
                                   style: TextStyle(
                                     color: const Color(0xFFF1EED0),
                                     fontSize: width(16),
@@ -514,7 +613,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 Text(
-                                  'CAM' + ', LW',
+                                  post2,
                                   style: TextStyle(
                                     color: const Color(0xFFF1EED0),
                                     fontSize: width(16),
@@ -528,7 +627,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       // Posts Tab
-                      Container(
+                      SizedBox(
                         height: 200,
                         child: Center(
                           child: Text(
@@ -541,7 +640,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       // Videos Tab
-                      Container(
+                      SizedBox(
                         height: 200,
                         child: Center(
                           child: Text(
