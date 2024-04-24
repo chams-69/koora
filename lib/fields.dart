@@ -137,28 +137,28 @@ class _FieldsState extends State<Fields> {
           ),
         ),
         centerTitle: true,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => const Profile(),
-        //       ),
-        //     );
-        //   },
-        //   icon: Stack(
-        //   children: [
-        //     Image.asset('assets/images/profileIcon.png'),
-        //     Padding(
-        //       padding: const EdgeInsets.all(6),
-        //       child: Image.asset(
-        //         'assets/images/avatar.png',
-        //         fit: BoxFit.cover,
-        //       ),
-        //     )
-        //   ],
-        // ),
-        // ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Profile(),
+              ),
+            );
+          },
+          icon: Stack(
+            children: [
+              Image.asset('assets/images/profileIcon.png'),
+              Padding(
+                padding: const EdgeInsets.all(6),
+                child: Image.asset(
+                  'assets/images/avatar.png',
+                  fit: BoxFit.cover,
+                ),
+              )
+            ],
+          ),
+        ),
         actions: [
           Row(
             children: [
@@ -454,62 +454,62 @@ class _FieldsState extends State<Fields> {
           ),
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   color: const Color(0xff354038),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: [
-      //       IconButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //               builder: (context) => const Quickies(),
-      //             ),
-      //           );
-      //         },
-      //         icon: Image.asset('assets/images/quickies.png'),
-      //       ),
-      //       IconButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //               builder: (context) => const MyActivities(),
-      //             ),
-      //           );
-      //         },
-      //         icon: Image.asset('assets/images/myActivities.png'),
-      //       ),
-      //       IconButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //               builder: (context) => const Home(),
-      //             ),
-      //           );
-      //         },
-      //         icon: Image.asset('assets/images/home.png'),
-      //       ),
-      //       IconButton(
-      //         onPressed: () {
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //               builder: (context) => const Players(),
-      //             ),
-      //           );
-      //         },
-      //         icon: Image.asset('assets/images/players.png'),
-      //       ),
-      //       IconButton(
-      //         onPressed: () {},
-      //         icon: Image.asset('assets/images/inFields.png'),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xff354038),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Quickies(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/quickies.png'),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyActivities(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/myActivities.png'),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Home(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/home.png'),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Players(),
+                  ),
+                );
+              },
+              icon: Image.asset('assets/images/players.png'),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset('assets/images/inFields.png'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -96,6 +96,7 @@ class _GamesState extends State<Games> {
       ),
       appBar: AppBar(
         backgroundColor: const Color(0xff343835),
+        iconTheme: const IconThemeData(color: Color(0xFFF1EED0)),
         title: const Padding(
           padding: EdgeInsets.all(10.0),
           child: Text(
@@ -118,17 +119,17 @@ class _GamesState extends State<Games> {
         //     );
         //   },
         //   icon: Stack(
-        //   children: [
-        //     Image.asset('assets/images/profileIcon.png'),
-        //     Padding(
-        //       padding: const EdgeInsets.all(6),
-        //       child: Image.asset(
-        //         'assets/images/avatar.png',
-        //         fit: BoxFit.cover,
-        //       ),
-        //     )
-        //   ],
-        // ),
+        //     children: [
+        //       Image.asset('assets/images/profileIcon.png'),
+        //       Padding(
+        //         padding: const EdgeInsets.all(6),
+        //         child: Image.asset(
+        //           'assets/images/avatar.png',
+        //           fit: BoxFit.cover,
+        //         ),
+        //       )
+        //     ],
+        //   ),
         // ),
         actions: [
           Row(

@@ -115,7 +115,6 @@ class _TeamDetailsState extends State<TeamDetails> {
                           fontWeight: FontWeight.normal,
                           fontSize: width(16),
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     SizedBox(height: width(30)),

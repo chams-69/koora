@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:koora/create_team.dart';
 import 'package:koora/fields.dart';
 import 'package:koora/home.dart';
 import 'package:koora/my_activities.dart';
@@ -39,7 +40,14 @@ class _TeamsState extends State<Teams> {
         width: sizedBoxWidth,
         height: sizedBoxHeight,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CreateTeam(),
+              ),
+            );
+          },
           child: Ink(
             child: Image.asset('assets/images/addTeam.png'),
           ),
@@ -47,6 +55,7 @@ class _TeamsState extends State<Teams> {
       ),
       appBar: AppBar(
         backgroundColor: const Color(0xff343835),
+        iconTheme: const IconThemeData(color: Color(0xFFF1EED0)),
         title: const Padding(
           padding: EdgeInsets.all(10.0),
           child: Text(
@@ -69,17 +78,17 @@ class _TeamsState extends State<Teams> {
         //     );
         //   },
         //   icon: Stack(
-        //   children: [
-        //     Image.asset('assets/images/profileIcon.png'),
-        //     Padding(
-        //       padding: const EdgeInsets.all(6),
-        //       child: Image.asset(
-        //         'assets/images/avatar.png',
-        //         fit: BoxFit.cover,
-        //       ),
-        //     )
-        //   ],
-        // ),
+        //     children: [
+        //       Image.asset('assets/images/profileIcon.png'),
+        //       Padding(
+        //         padding: const EdgeInsets.all(6),
+        //         child: Image.asset(
+        //           'assets/images/avatar.png',
+        //           fit: BoxFit.cover,
+        //         ),
+        //       )
+        //     ],
+        //   ),
         // ),
         actions: [
           Row(
