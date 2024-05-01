@@ -252,8 +252,9 @@ class _TeamsState extends State<Teams> {
                                               children: [
                                                 LinearProgressBar(
                                                   maxSteps: max,
-                                                  progressType: LinearProgressBar
-                                                      .progressTypeLinear, // Use Linear progress
+                                                  progressType:
+                                                      LinearProgressBar
+                                                          .progressTypeLinear,
                                                   currentStep: members,
                                                   progressColor:
                                                       const Color(0xff599068),

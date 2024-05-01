@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:koora/create_game.dart';
 import 'package:koora/fields.dart';
 import 'package:koora/game_details.dart';
 import 'package:koora/home.dart';
@@ -88,7 +89,14 @@ class _GamesState extends State<Games> {
         width: sizedBoxWidth,
         height: sizedBoxWidth,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CreateGame(),
+              ),
+            );
+          },
           child: Ink(
             child: Image.asset('assets/images/addGame.png'),
           ),

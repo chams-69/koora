@@ -398,8 +398,8 @@ class _ProfileState extends State<Profile> {
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           colors: [
-                            Color(0xFF415346), // Green
-                            Color(0xff343835), // Transparent
+                            Color(0xFF415346),
+                            Color(0xff343835),
                           ],
                         ),
                       ),

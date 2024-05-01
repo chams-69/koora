@@ -24,6 +24,7 @@ C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/coffe.png
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/coffe2.png
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/coverPhoto.png
+C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/date.png
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/details.png
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/detailsS.png
 C:/Users/USER/Desktop/flutter_projects/koora/build/windows/x64/runner/Debug/data/flutter_assets/assets/images/edit.png
